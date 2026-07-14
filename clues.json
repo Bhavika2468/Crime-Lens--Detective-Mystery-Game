@@ -1,0 +1,32 @@
+[
+    {
+        "id": 1,
+        "location": "Mansion",
+        "clue": "A bloody knife was hidden under the dining table."
+    },
+    {
+        "id": 2,
+        "location": "Library",
+        "clue": "A torn page mentions a secret inheritance."
+    },
+    {
+        "id": 3,
+        "location": "Office",
+        "clue": "Financial records show millions transferred yesterday."
+    },
+    {
+        "id": 4,
+        "location": "Garage",
+        "clue": "Fresh tire marks indicate a hurried escape."
+    },
+    {
+        "id": 5,
+        "location": "Warehouse",
+        "clue": "Hidden fingerprints were found on a wooden crate."
+    },
+    {
+        "id": 6,
+        "location": "Dockyard",
+        "clue": "A witness saw a suspicious boat leaving at midnight."
+    }
+]

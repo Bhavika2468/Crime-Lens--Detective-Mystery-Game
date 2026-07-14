@@ -1,0 +1,1270 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport"
+content="width=device-width, initial-scale=1.0">
+
+<title>CrimeLens | AI Detective Investigation</title>
+
+<meta name="description"
+content="Interactive Detective Investigation Game">
+
+<link rel="preconnect"
+href="https://fonts.googleapis.com">
+
+<link rel="preconnect"
+href="https://fonts.gstatic.com"
+crossorigin>
+
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700;900&family=Poppins:wght@300;400;500;600;700&display=swap"
+rel="stylesheet">
+
+<link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css"/>
+
+<link rel="stylesheet"
+href="style.css">
+
+</head>
+
+<body>
+
+<!-- =====================================
+                LOADER
+===================================== -->
+
+<div id="loader">
+
+    <div class="loader-content">
+
+        <div class="loader-logo">
+
+            <i class="fa-solid fa-user-secret"></i>
+
+        </div>
+
+        <h1>
+
+            CrimeLens
+
+        </h1>
+
+        <p id="loaderText">
+
+            Initializing Investigation...
+
+        </p>
+
+        <div class="loader-bar">
+
+            <div id="loaderProgress"></div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<!-- =====================================
+            BACKGROUND PARTICLES
+===================================== -->
+
+<div id="particles"></div>
+
+<!-- =====================================
+            LOGIN MODAL
+===================================== -->
+
+<div id="loginModal">
+
+    <div class="login-box">
+
+        <h2>
+
+            Detective Login
+
+        </h2>
+
+        <p>
+
+            Access Restricted
+
+        </p>
+
+        <input
+        type="text"
+        id="detectiveName"
+        placeholder="Detective Name">
+
+        <input
+        type="text"
+        id="badgeNumber"
+        placeholder="Badge Number">
+
+        <button id="loginBtn">
+
+            Begin Investigation
+
+        </button>
+
+    </div>
+
+</div>
+
+<!-- =====================================
+                HEADER
+===================================== -->
+
+<header>
+
+<nav>
+
+<div class="logo">
+
+<i class="fa-solid fa-user-secret"></i>
+
+<span>
+
+CrimeLens
+
+</span>
+
+</div>
+
+<ul>
+
+<li>
+
+<a href="#home">
+
+Home
+
+</a>
+
+</li>
+
+<li>
+
+<a href="#story">
+
+Story
+
+</a>
+
+</li>
+
+<li>
+
+<a href="#locations">
+
+Locations
+
+</a>
+
+</li>
+
+<li>
+
+<a href="#suspects">
+
+Suspects
+
+</a>
+
+</li>
+
+<li>
+
+<a href="#investigation">
+
+Investigation
+
+</a>
+
+</li>
+
+</ul>
+
+<div class="nav-actions">
+
+<button id="themeBtn">
+
+<i class="fa-solid fa-moon"></i>
+
+</button>
+
+</div>
+
+</nav>
+
+</header>
+
+<!-- =====================================
+            DETECTIVE DASHBOARD
+===================================== -->
+
+<section id="dashboard">
+
+<div class="dashboard-card">
+
+<h4>
+
+Detective
+
+</h4>
+
+<h2 id="detectiveDisplay">
+
+Unknown
+
+</h2>
+
+</div>
+
+<div class="dashboard-card">
+
+<h4>
+
+Score
+
+</h4>
+
+<h2 id="score">
+
+0
+
+</h2>
+
+</div>
+
+<div class="dashboard-card">
+
+<h4>
+
+Clues
+
+</h4>
+
+<h2 id="clueCount">
+
+0 / 6
+
+</h2>
+
+</div>
+
+<div class="dashboard-card">
+
+<h4>
+
+Timer
+
+</h4>
+
+<h2 id="timer">
+
+10:00
+
+</h2>
+
+</div>
+
+<div class="dashboard-card">
+
+<h4>
+
+Progress
+
+</h4>
+
+<h2 id="progressPercent">
+
+0%
+
+</h2>
+
+</div>
+
+</section>
+
+<!-- =====================================
+                HERO
+===================================== -->
+
+<section
+id="home"
+class="hero">
+
+<div class="hero-left">
+
+<div class="hero-badge">
+
+CASE FILE X-247
+
+</div>
+
+<h1>
+
+Solve The
+
+<span>
+
+Perfect Crime
+
+</span>
+
+</h1>
+
+<p>
+
+Richard Morgan, one of the country's most influential
+billionaires, has been found murdered inside his private
+estate.
+
+Every suspect has a motive.
+
+Every clue hides a secret.
+
+Time is running out.
+
+Can you uncover the truth before the killer disappears forever?
+
+</p>
+
+<div class="hero-buttons">
+
+<button id="startMission">
+
+Start Mission
+
+</button>
+
+<button id="introBtn">
+
+Watch Briefing
+
+</button>
+
+</div>
+
+</div>
+
+<div class="hero-right">
+
+<div class="crime-file">
+
+<div class="crime-top">
+
+CASE FILE
+
+</div>
+
+<h2>
+
+Richard Morgan
+
+</h2>
+
+<p>
+
+Victim
+
+</p>
+
+<hr>
+
+<div class="crime-row">
+
+<span>
+
+Status
+
+</span>
+
+<b class="danger">
+
+Murdered
+
+</b>
+
+</div>
+
+<div class="crime-row">
+
+<span>
+
+Time
+
+</span>
+
+<b>
+
+10:47 PM
+
+</b>
+
+</div>
+
+<div class="crime-row">
+
+<span>
+
+Location
+
+</span>
+
+<b>
+
+Morgan Mansion
+
+</b>
+
+</div>
+
+<div class="crime-row">
+
+<span>
+
+Suspects
+
+</span>
+
+<b>
+
+4
+
+</b>
+
+</div>
+
+<div class="crime-row">
+
+<span>
+
+Evidence
+
+</span>
+
+<b>
+
+Unknown
+
+</b>
+
+</div>
+
+</div>
+
+</div>
+
+<div class="scroll-indicator">
+
+<i class="fa-solid fa-angle-down"></i>
+
+</div>
+
+</section>
+<!-- =====================================
+            STORY SECTION
+===================================== -->
+
+<section id="story" class="section">
+
+<div class="section-title">
+
+<span>CASE BACKGROUND</span>
+
+<h2>The Night of the Murder</h2>
+
+<p>
+At exactly <b>10:47 PM</b>, billionaire Richard Morgan was found dead inside his mansion.
+The CCTV cameras mysteriously stopped recording moments before the murder.
+Only four people remained inside the estate...
+One of them is the killer.
+</p>
+
+</div>
+
+<div class="timeline">
+
+<div class="timeline-card">
+
+<div class="timeline-icon">
+
+<i class="fa-solid fa-clock"></i>
+
+</div>
+
+<h3>09:30 PM</h3>
+
+<p>Dinner begins with all suspects present.</p>
+
+</div>
+
+<div class="timeline-card">
+
+<div class="timeline-icon">
+
+<i class="fa-solid fa-video"></i>
+
+</div>
+
+<h3>10:40 PM</h3>
+
+<p>CCTV cameras suddenly stop recording.</p>
+
+</div>
+
+<div class="timeline-card">
+
+<div class="timeline-icon">
+
+<i class="fa-solid fa-skull"></i>
+
+</div>
+
+<h3>10:47 PM</h3>
+
+<p>The victim is discovered dead.</p>
+
+</div>
+
+<div class="timeline-card">
+
+<div class="timeline-icon">
+
+<i class="fa-solid fa-car"></i>
+
+</div>
+
+<h3>11:00 PM</h3>
+
+<p>Police seal every exit from the estate.</p>
+
+</div>
+
+</div>
+
+</section>
+
+<!-- =====================================
+        INVESTIGATION LOCATIONS
+===================================== -->
+
+<section id="locations" class="section">
+
+<div class="section-title">
+
+<span>INVESTIGATE</span>
+
+<h2>Crime Locations</h2>
+
+<p>
+Search every location carefully. Every investigation reveals a clue loaded directly from the investigation database.
+</p>
+
+</div>
+
+<div class="location-grid">
+
+<div class="location-card" data-id="1">
+
+<i class="fa-solid fa-house"></i>
+
+<h3>Mansion</h3>
+
+<p>Main crime scene.</p>
+
+<button class="investigateBtn">
+
+Investigate
+
+</button>
+
+</div>
+
+<div class="location-card" data-id="2">
+
+<i class="fa-solid fa-book"></i>
+
+<h3>Library</h3>
+
+<p>Hidden documents.</p>
+
+<button class="investigateBtn">
+
+Investigate
+
+</button>
+
+</div>
+
+<div class="location-card" data-id="3">
+
+<i class="fa-solid fa-building"></i>
+
+<h3>Office</h3>
+
+<p>Financial secrets.</p>
+
+<button class="investigateBtn">
+
+Investigate
+
+</button>
+
+</div>
+
+<div class="location-card" data-id="4">
+
+<i class="fa-solid fa-car"></i>
+
+<h3>Garage</h3>
+
+<p>Escape vehicle.</p>
+
+<button class="investigateBtn">
+
+Investigate
+
+</button>
+
+</div>
+
+<div class="location-card" data-id="5">
+
+<i class="fa-solid fa-warehouse"></i>
+
+<h3>Warehouse</h3>
+
+<p>Hidden shipment.</p>
+
+<button class="investigateBtn">
+
+Investigate
+
+</button>
+
+</div>
+
+<div class="location-card" data-id="6">
+
+<i class="fa-solid fa-water"></i>
+
+<h3>Dockyard</h3>
+
+<p>Possible escape route.</p>
+
+<button class="investigateBtn">
+
+Investigate
+
+</button>
+
+</div>
+
+</div>
+
+</section>
+
+<!-- =====================================
+            SUSPECTS
+===================================== -->
+
+<section id="suspects" class="section">
+
+<div class="section-title">
+
+<span>SUSPECT DATABASE</span>
+
+<h2>Main Suspects</h2>
+
+</div>
+
+<div class="suspect-grid">
+
+<div class="suspect-card" data-name="John Carter">
+
+<div class="avatar">
+
+👨🏻
+
+</div>
+
+<h3>John Carter</h3>
+
+<h4>Business Partner</h4>
+
+<p>
+
+Drowning in financial debt and desperate for money.
+
+</p>
+
+<button class="questionBtn">
+
+Question
+
+</button>
+
+</div>
+
+<div class="suspect-card" data-name="Emma Wilson">
+
+<div class="avatar">
+
+👩🏻
+
+</div>
+
+<h3>Emma Wilson</h3>
+
+<h4>Secretary</h4>
+
+<p>
+
+Had unrestricted access to confidential company files.
+
+</p>
+
+<button class="questionBtn">
+
+Question
+
+</button>
+
+</div>
+
+<div class="suspect-card" data-name="Robert Miles">
+
+<div class="avatar">
+
+🧔🏻
+
+</div>
+
+<h3>Robert Miles</h3>
+
+<h4>Lawyer</h4>
+
+<p>
+
+Recently changed the victim's will.
+
+</p>
+
+<button class="questionBtn">
+
+Question
+
+</button>
+
+</div>
+
+<div class="suspect-card" data-name="Olivia Brown">
+
+<div class="avatar">
+
+👩🏻‍🦰
+
+</div>
+
+<h3>Olivia Brown</h3>
+
+<h4>Housekeeper</h4>
+
+<p>
+
+Knows every secret passage inside the mansion.
+
+</p>
+
+<button class="questionBtn">
+
+Question
+
+</button>
+
+</div>
+
+</div>
+
+</section>
+
+<!-- =====================================
+        INVESTIGATION CENTER
+===================================== -->
+
+<section id="investigation" class="section">
+
+<div class="section-title">
+
+<span>INVESTIGATION HUB</span>
+
+<h2>Detective Workspace</h2>
+
+</div>
+
+<div class="workspace">
+
+<!-- Evidence -->
+
+<div class="panel">
+
+<h3>
+
+<i class="fa-solid fa-thumbtack"></i>
+
+Evidence Board
+
+</h3>
+
+<div id="evidenceBoard">
+
+<p class="empty">
+
+No evidence collected.
+
+</p>
+
+</div>
+
+</div>
+
+<!-- Notebook -->
+
+<div class="panel">
+
+<h3>
+
+<i class="fa-solid fa-book-open"></i>
+
+Detective Notebook
+
+</h3>
+
+<div id="notebook">
+
+<p class="empty">
+
+Your observations will appear here.
+
+</p>
+
+</div>
+
+</div>
+
+<!-- Inventory -->
+
+<div class="panel">
+
+<h3>
+
+<i class="fa-solid fa-toolbox"></i>
+
+Investigation Kit
+
+</h3>
+
+<ul id="inventory">
+
+<li>🔦 Flashlight</li>
+
+<li>📷 Camera</li>
+
+<li>🧪 DNA Kit</li>
+
+<li>📖 Detective Notebook</li>
+
+<li>🗝 Master Key</li>
+
+</ul>
+
+</div>
+
+</div>
+
+<!-- Progress -->
+
+<div class="progress-container">
+
+<div class="progress-header">
+
+<span>Investigation Progress</span>
+
+<span id="progressLabel">0%</span>
+
+</div>
+
+<div class="progress-bar">
+
+<div id="progressFill"></div>
+
+</div>
+
+</div>
+
+<!-- =====================================
+            ACHIEVEMENTS
+===================================== -->
+
+<section id="achievements" class="section">
+
+    <div class="section-title">
+
+        <span>DETECTIVE RECORD</span>
+
+        <h2>Achievements</h2>
+
+        <p>
+            Unlock achievements by investigating locations, collecting evidence,
+            solving puzzles, and arresting the correct suspect.
+        </p>
+
+    </div>
+
+    <div class="achievement-grid">
+
+<div class="achievement-card" id="achievement1">
+
+<i class="fa-solid fa-magnifying-glass"></i>
+
+<h3>First Clue</h3>
+
+<p>Discover your first clue.</p>
+
+</div>
+
+<div class="achievement-card" id="achievement2">
+
+<i class="fa-solid fa-folder-open"></i>
+
+<h3>Evidence Collector</h3>
+
+<p>Collect all six clues.</p>
+
+</div>
+
+<div class="achievement-card" id="achievement3">
+
+<i class="fa-solid fa-book"></i>
+
+<h3>Notebook Master</h3>
+
+<p>Fill the detective notebook.</p>
+
+</div>
+
+<div class="achievement-card" id="achievement4">
+
+<i class="fa-solid fa-trophy"></i>
+
+<h3>Master Detective</h3>
+
+<p>Solve the mystery correctly.</p>
+
+</div>
+
+</div>
+
+<!-- =====================================
+            ACTION BUTTONS
+===================================== -->
+
+<div class="floating-buttons">
+
+    <button id="hintBtn" title="Hint">
+
+        <i class="fa-solid fa-lightbulb"></i>
+
+    </button>
+
+    <button id="puzzleBtn" title="Puzzle">
+
+        <i class="fa-solid fa-puzzle-piece"></i>
+
+    </button>
+
+    <button id="arrestBtn" title="Arrest Suspect">
+
+        <i class="fa-solid fa-handcuffs"></i>
+
+    </button>
+
+    <button id="topBtn" title="Back to Top">
+
+        <i class="fa-solid fa-arrow-up"></i>
+
+    </button>
+
+</div>
+
+<!-- =====================================
+            HINT MODAL
+===================================== -->
+
+<div class="modal" id="hintModal">
+
+    <div class="modal-content">
+
+        <span class="close" id="closeHint">&times;</span>
+
+        <h2>Detective Hint</h2>
+
+        <p id="hintText">
+
+            No hints available yet.
+
+        </p>
+
+        <button id="useHint">
+
+            Use Hint
+
+        </button>
+
+    </div>
+
+</div>
+
+<!-- =====================================
+            PUZZLE MODAL
+===================================== -->
+
+<div class="modal" id="puzzleModal">
+
+    <div class="modal-content">
+
+        <span class="close" id="closePuzzle">&times;</span>
+
+        <h2>Detective Puzzle</h2>
+
+        <p id="puzzleQuestion">
+
+            Puzzle appears here.
+
+        </p>
+
+        <input
+
+            type="text"
+
+            id="puzzleAnswer"
+
+            placeholder="Your Answer"
+
+        >
+
+        <button id="submitPuzzle">
+
+            Submit
+
+        </button>
+
+    </div>
+
+</div>
+
+<!-- =====================================
+            ARREST MODAL
+===================================== -->
+
+<div class="modal" id="arrestModal">
+
+    <div class="modal-content">
+
+        <span class="close" id="closeArrest">&times;</span>
+
+        <h2>Select the Killer</h2>
+
+        <div class="suspect-options">
+
+            <button class="arrest-option">
+
+                John Carter
+
+            </button>
+
+            <button class="arrest-option">
+
+                Emma Wilson
+
+            </button>
+
+            <button class="arrest-option">
+
+                Robert Miles
+
+            </button>
+
+            <button class="arrest-option">
+
+                Olivia Brown
+
+            </button>
+
+        </div>
+
+    </div>
+
+</div>
+
+<!-- =====================================
+            INTRO MODAL
+===================================== -->
+
+<div class="modal" id="introModal">
+
+    <div class="modal-content">
+
+        <span class="close" id="closeIntro">
+
+            &times;
+
+        </span>
+
+        <h2>Mission Briefing</h2>
+
+        <p>
+
+            Detective,
+
+            <br><br>
+
+            Richard Morgan was murdered inside his mansion at exactly
+            <strong>10:47 PM</strong>.
+
+            <br><br>
+
+            Four suspects remain inside the estate.
+
+            Every clue matters.
+
+            Every second counts.
+
+            Trust nobody.
+
+            <br><br>
+
+            Good luck.
+
+        </p>
+
+    </div>
+
+</div>
+
+<!-- =====================================
+            TOAST
+===================================== -->
+
+<div id="toast">
+
+    Welcome Detective
+
+</div>
+
+<!-- =====================================
+            FOOTER
+===================================== -->
+
+<footer>
+
+    <h2>
+
+        CrimeLens
+
+    </h2>
+
+    <p>
+
+        "Every clue tells a story.
+        Every decision changes the ending."
+
+    </p>
+
+    <div class="footer-icons">
+
+        <i class="fa-brands fa-github"></i>
+
+        <i class="fa-brands fa-linkedin"></i>
+
+        <i class="fa-solid fa-envelope"></i>
+
+    </div>
+
+    <p>
+
+        Designed & Developed by
+
+        <strong>
+
+            Bhavika
+
+
+    </p>
+
+</footer>
+
+
+    <h2>Mystery Quest</h2>
+
+    <p>
+        Every clue matters. Every second counts.
+    </p>
+
+    <p>
+        Mystery Quest • Designed by Bhavika
+    </p>
+
+</footer>
+
+<!-- ================= ARREST MODAL ================= -->
+
+<div class="modal" id="arrestModal">
+
+    <div class="modal-content">
+
+        <span class="close" id="closeArrest">&times;</span>
+
+        <h2>Choose the Killer</h2>
+
+        <p>Select the suspect you believe committed the murder.</p>
+
+        <div class="suspect-options">
+
+            <button class="arrest-option" data-name="John Carter">
+                John Carter
+            </button>
+
+            <button class="arrest-option" data-name="Emma Wilson">
+                Emma Wilson
+            </button>
+
+            <button class="arrest-option" data-name="Robert Miles">
+                Robert Miles
+            </button>
+
+            <button class="arrest-option" data-name="Olivia Brown">
+                Olivia Brown
+            </button>
+
+        </div>
+
+    </div>
+
+</div>
+
+<div id="toast"></div>
+
+<script src="script.js"></script>
+
+
+</body>
+
+</html>
